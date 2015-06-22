@@ -83,6 +83,9 @@ nnoremap <leader>a :Ag	" open ag.vim
 """"""""""""""""""""""}}}
 " Errors {{{
 
+set visualbell 
+set t_vb=
+
 """"""""""""""""""""""}}}
 " Cartography {{{
 
@@ -196,14 +199,12 @@ nnoremap gV `[v`]
 " strips trailing whitespace at the end of files. this
 " is called on buffer write in the autogroup above.
 function! <SID>StripTrailingWhitespaces()
-    " save last search & cursor position
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    let @/=_s
-    call cursor(l, c)
-endfunction
+   " save last search & cursor position
+   let l = line(".")
+   let c = col(".")
+   %s/\s\+$//e
+   call cursor(l, c)
+endfun
 
 " Restore the cursor when we can.
 
@@ -318,8 +319,7 @@ augroup configgroup
     autocmd!
     autocmd VimEnter * highlight clear SignColumn
 	 autocmd BufWinEnter * call RestoreCursor()
-    autocmd BufWritePre *.php,*.py,*.js,*.txt,*.hs,*.java,*.md
-                \:call <SID>StripTrailingWhitespaces()
+    autocmd BufWritePre *.php,*.py,*.js,*.txt,*.hs,*.java,*.md,*.ex :call <SID>StripTrailingWhitespaces()
     autocmd FileType java setlocal noexpandtab
     autocmd FileType java setlocal list
     autocmd FileType java setlocal listchars=tab:+\ ,eol:-
@@ -332,6 +332,10 @@ augroup configgroup
     autocmd FileType ruby setlocal shiftwidth=2
     autocmd FileType ruby setlocal softtabstop=2
     autocmd FileType ruby setlocal commentstring=#\ %s
+    autocmd FileType elixir setlocal tabstop=2
+    autocmd FileType elixir setlocal shiftwidth=2
+    autocmd FileType elixir setlocal softtabstop=2
+    autocmd FileType elixir setlocal commentstring=#\ %s
     autocmd FileType python setlocal commentstring=#\ %s
     autocmd BufEnter *.cls setlocal filetype=java
     autocmd BufEnter *.zsh-theme setlocal filetype=zsh
