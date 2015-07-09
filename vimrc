@@ -274,43 +274,6 @@ endif
 
 
 """"""""""""""""""""""}}}
-" Vundle settings {{{
-
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'gmarik/Vundle.vim'
-
-" The following are examples of different formats supported.
-" " Keep Plugin commands between vundle#begin/end.
-" " plugin on GitHub repo
-" Plugin 'tpope/vim-fugitive'
-" " plugin from http://vim-scripts.org/vim/scripts.html
-
-Plugin 'Glench/Vim-Jinja2-Syntax'
-Plugin 'luochen1990/rainbow'
-Plugin 'wting/rust.vim'
-Plugin 'fatih/vim-go'
-" Erlang/Elixir Plugins
-Plugin 'jimenezrick/vimerl'
-Plugin 'elixir-lang/vim-elixir'
-" JS Plugins
-Plugin 'vim-coffee-script'
-Plugin 'moll/vim-node'
-Plugin 'pangloss/vim-javascript'
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'marijnh/tern_for_vim'
-" Auto Complete
-Plugin 'Valloric/YouCompleteMe'
-
-call vundle#end()            " required
-filetype on              " Recognize syntax by file extension.
-filetype indent on       " Check for indent file.
-filetype plugin on       " Allow plugins to be loaded by file type.
-syntax on                " Syntax highlighting.
-
-
-" }}}
 
 
 """"""""""""""""""""""}}}
