@@ -16,7 +16,9 @@ Plugin 'gmarik/Vundle.vim'
 " " Keep Plugin commands between vundle#begin/end.
 
 """"""""""""""""""""""
-" General Plugins
+" General Options
+Plugin 'bling/vim-airline'
+Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'tpope/vim-fugitive'
 
 """"""""""""""""""""""
@@ -320,8 +322,10 @@ augroup configgroup
     autocmd VimEnter * highlight clear SignColumn
 	 autocmd BufWinEnter * call RestoreCursor()
     autocmd BufWritePre *.php,*.py,*.js,*.txt,*.hs,*.java,*.md,*.ex :call <SID>StripTrailingWhitespaces()
-    autocmd FileType java setlocal noexpandtab
     autocmd FileType java setlocal list
+    autocmd FileType java setlocal tabstop=4
+    autocmd FileType java setlocal shiftwidth=4
+    autocmd FileType java setlocal softtabstop=4
     autocmd FileType java setlocal listchars=tab:+\ ,eol:-
     autocmd FileType java setlocal formatprg=par\ -w80\ -T4
     autocmd FileType php setlocal expandtab
