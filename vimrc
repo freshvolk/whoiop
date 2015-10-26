@@ -2,7 +2,8 @@
 " Author: Brian Volk
 " Based On: vimrc by Shawn Tice, http://dougblack.io/words/a-good-vimrc.html
 """"""""""""""""""""""
-
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
 """"""""""""""""""""""
 " Vundle settings {{{
@@ -43,8 +44,8 @@ Plugin 'elixir-lang/vim-elixir'
 " JS Plugins
 Plugin 'vim-coffee-script'
 Plugin 'moll/vim-node'
-Plugin 'pangloss/vim-javascript'
 Plugin 'jelera/vim-javascript-syntax'
+Plugin 'digitaltoad/vim-jade'
 Plugin 'marijnh/tern_for_vim'
 
 """"""""""""""""""""""
@@ -70,6 +71,8 @@ set fileencoding=utf-8
 
 set nocompatible         " No compatibility with vi.
 set modelines=1
+
+set listchars=tab:+\ ,eol:-
 
 """"""""""""""""""""""
 " Commands {{{
@@ -124,7 +127,9 @@ set smartcase           " Searches are case-sensitive if caps used.
 " Colors {{{
 
 set background=dark		" dark background
-colorscheme badwolf		" colorscheme ... this comment is so helpful
+set t_Co=256
+"colorscheme badwolf		" colorscheme ... this comment is so helpful
+colorscheme PaperColor-Dark
 syntax enable			" enable syntax processing
 
 
@@ -167,6 +172,23 @@ set lazyredraw			" redraw only when we need to.
 " turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
 
+set guifont=Source\ Code\ Pro\ for\ Powerline:h12
+
+  if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+  endif
+
+  " unicode symbols
+  let g:airline_symbols.crypt = '🔒'
+
+  " powerline symbols
+  let g:airline_left_sep = ''
+  let g:airline_left_alt_sep = ''
+  let g:airline_right_sep = ''
+  let g:airline_right_alt_sep = ''
+  let g:airline_symbols.branch = ''
+  let g:airline_symbols.readonly = ''
+  let g:airline_symbols.linenr = ''
 
 """"""""""""""""""""""}}}
 " Folding {{{
@@ -274,6 +296,10 @@ endif
 
 
 """"""""""""""""""""""}}}
+" airline settings {{{
+set laststatus=2
+let g:airline_theme='PaperColor'
+" }}}
 
 
 """"""""""""""""""""""}}}
@@ -284,7 +310,7 @@ augroup configgroup
     autocmd!
     autocmd VimEnter * highlight clear SignColumn
 	 autocmd BufWinEnter * call RestoreCursor()
-    autocmd BufWritePre *.php,*.py,*.js,*.txt,*.hs,*.java,*.md,*.ex :call <SID>StripTrailingWhitespaces()
+    autocmd BufWritePre *.php,*.py,*.js,*.txt,*.hs,*.java,*.md,*.ex,*.exs :call <SID>StripTrailingWhitespaces()
     autocmd FileType java setlocal list
     autocmd FileType java setlocal tabstop=4
     autocmd FileType java setlocal shiftwidth=4
@@ -295,6 +321,12 @@ augroup configgroup
     autocmd FileType php setlocal list
     autocmd FileType php setlocal listchars=tab:+\ ,eol:-
     autocmd FileType php setlocal formatprg=par\ -w80\ -T4
+    autocmd FileType javascript setlocal tabstop=4
+    autocmd FileType javascript setlocal shiftwidth=4
+    autocmd FileType javascript setlocal softtabstop=4
+    autocmd FileType jade setlocal tabstop=4
+    autocmd FileType jade setlocal shiftwidth=4
+    autocmd FileType jade setlocal softtabstop=4
     autocmd FileType ruby setlocal tabstop=2
     autocmd FileType ruby setlocal shiftwidth=2
     autocmd FileType ruby setlocal softtabstop=2
